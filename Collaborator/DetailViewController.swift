@@ -8,16 +8,31 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+protocol DetailViewControllerDelegate {
+    func detailViewControllerDidUpdate(_ detailViewController: DetailViewController)
+    //func detailViewControllerDidCancel(_ detailViewController: DetailViewController)
+}
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+let subsectionHeaders = ["TASK", "COLLABORATORS", "LOG"]
 
+class DetailViewController: UITableViewController, UITextFieldDelegate {
 
+    var delegate: DetailViewControllerDelegate?
+    @IBOutlet weak var detailDescriptionField: UITextField!
+    
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        detailItem?.taskName = textField.text ?? ""
+        delegate?.detailViewControllerDidUpdate(self)
+        return true
+    }
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
+            if let field = detailDescriptionField{
+                field.text = detail.description
             }
         }
     }
@@ -33,13 +48,22 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: NSDate? {
+    override func viewWillDisappear(_ animated: Bool) {
+        detailItem?.taskName = detailDescriptionField.text ?? ""
+        delegate?.detailViewControllerDidUpdate(self)
+    }
+    
+    var detailItem: Task? {
         didSet {
             // Update the view.
             configureView()
         }
     }
 
-
+    // MARK: - to show sub header i.e. TASK, COLLABORATORS, LOG
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return subsectionHeaders[section]
+    }
+    
 }
 

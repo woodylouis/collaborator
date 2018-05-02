@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EABB20920982A890064A750 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABB20820982A890064A750 /* Task.swift */; };
 		FB12F6A320914DD200226F9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12F6A220914DD200226F9F /* AppDelegate.swift */; };
 		FB12F6A520914DD200226F9F /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12F6A420914DD200226F9F /* MasterViewController.swift */; };
 		FB12F6A720914DD200226F9F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12F6A620914DD200226F9F /* DetailViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EABB20820982A890064A750 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		FB12F69F20914DD200226F9F /* Collaborator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collaborator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB12F6A220914DD200226F9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB12F6A420914DD200226F9F /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				FB12F6A220914DD200226F9F /* AppDelegate.swift */,
 				FB12F6A420914DD200226F9F /* MasterViewController.swift */,
+				3EABB20820982A890064A750 /* Task.swift */,
 				FB12F6A620914DD200226F9F /* DetailViewController.swift */,
 				FB12F6A820914DD200226F9F /* Main.storyboard */,
 				FB12F6AB20914DD200226F9F /* Assets.xcassets */,
@@ -191,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Wenjin Li";
 				TargetAttributes = {
 					FB12F69E20914DD200226F9F = {
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EABB20920982A890064A750 /* Task.swift in Sources */,
 				FB12F6A720914DD200226F9F /* DetailViewController.swift in Sources */,
 				FB12F6A520914DD200226F9F /* MasterViewController.swift in Sources */,
 				FB12F6A320914DD200226F9F /* AppDelegate.swift in Sources */,
@@ -333,6 +337,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -340,6 +345,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -390,6 +396,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -397,6 +404,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -431,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UGNF3382Y3;
 				INFOPLIST_FILE = Collaborator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.griffith.ict.prog.Collaborator;
@@ -445,6 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UGNF3382Y3;
 				INFOPLIST_FILE = Collaborator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.griffith.ict.prog.Collaborator;
