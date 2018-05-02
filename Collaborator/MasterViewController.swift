@@ -91,10 +91,11 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
     // MARK: - Insert new object
     @objc
     func insertNewObject(_ sender: Any) {
+        //objects[0].insert("Hello", at: 0)
         //var indexPaths = [IndexPath]()
         //for section in 0..<sectionHeaders.count }
         let indexPath = IndexPath(row: objects[0].count, section: 0)
-        objects[0].append(Task())
+        objects[0].append(Task(taskName: "Write your item here"))  //default item
         tableView.insertRows(at: [indexPath], with: .automatic)
         self.indexPath = indexPath
         tableView.reloadData()
@@ -175,7 +176,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         //let object = objects[indexPath.section][indexPath.row] as! NSDate //two dimensions
         let object = objects[indexPath.section][indexPath.row] //two dimensions
         //cell.textLabel!.text = object.description
-        cell.textLabel!.text = object.description
+        cell.textLabel!.text = object.taskName
         return cell
     }
 

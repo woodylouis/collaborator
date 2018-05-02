@@ -32,7 +32,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             if let field = detailDescriptionField{
-                field.text = detail.description
+                field.text = detail.taskName
             }
         }
     }

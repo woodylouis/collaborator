@@ -9,14 +9,14 @@
 class Task {
     var taskName: String = ""
     
-//    init(taskName: String) {
-//        self.taskName = taskName
-//    }
+    init(taskName: String) {
+        self.taskName = taskName
+    }
 }
     
-extension Task: CustomStringConvertible {
-        var description: String{
-            return taskName
-        }
-}
+//extension Task: CustomStringConvertible {
+//        var description: String{
+//            return taskName
+//        }
+//}
 
