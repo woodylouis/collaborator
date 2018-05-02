@@ -57,10 +57,10 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
     var objects = sectionHeaders.map { (_: String) -> [Task] in return [Task]() } //.map
 
     func detailViewControllerDidUpdate(_ detailViewController: DetailViewController) {
-        let indexPath = objects[0].count - 1
-        if objects[0][indexPath].taskName == "" {
-            objects[0].remove(at: (indexPath))
-        }
+//        let indexPath = objects[0].count - 1
+//        if objects[0][indexPath].taskName == "" {
+//            objects[0].remove(at: (indexPath))//        }
+        
         tableView.reloadData()
     }
     
@@ -95,6 +95,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         objects[0].append(Task())
         tableView.insertRows(at: [indexPath], with: .automatic)
         self.indexPath = indexPath
+        tableView.reloadData()
         performSegue(withIdentifier: "showDetail", sender: indexPath)
         
         //let indexPath1 = IndexPath(row: 0, section: 1)
