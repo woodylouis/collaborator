@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Section Title
 let sectionHeaders = ["Ongoing", "Done"]
 enum Sections: Int {
     case ongoingSection = 0
@@ -87,6 +88,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Insert new object
     @objc
     func insertNewObject(_ sender: Any) {
         //var indexPaths = [IndexPath]()
@@ -152,7 +154,8 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionHeaders[section]
     }
-    
+
+    // Switch section by identifier
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier: String
         guard let section = Sections(rawValue: indexPath.section) else {
@@ -190,6 +193,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         }
     }
     
+    // Drag and drop in Edit mode
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         objects[destinationIndexPath.section].insert(objects[sourceIndexPath.section][sourceIndexPath.row], at: destinationIndexPath.row)
         objects[sourceIndexPath.section].remove(at: sourceIndexPath.row)
