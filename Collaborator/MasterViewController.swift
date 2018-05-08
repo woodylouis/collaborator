@@ -95,7 +95,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         //var indexPaths = [IndexPath]()
         //for section in 0..<sectionHeaders.count }
         let indexPath = IndexPath(row: objects[0].count, section: 0)
-        objects[0].append(Task(taskName: "Write your item here"))  //default item
+        objects[0].append(Task(taskName: "To do item \(objects[0].count + 1)"))  //default item
         tableView.insertRows(at: [indexPath], with: .automatic)
         self.indexPath = indexPath
         tableView.reloadData()
