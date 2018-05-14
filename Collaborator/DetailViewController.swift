@@ -35,15 +35,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
-    func configureView() {
-        // Update the user interface for the detail item.
-        let taskCell = tableView.dequeueReusableCell(withIdentifier: "task") as! TextFiledTableViewCell
-        if let detail = detailItem {
-            if let field = taskCell.taskDetailCell {
-                field.text = detail.taskName
-            }
-        }
-    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +59,16 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
         didSet {
             // Update the view.
             configureView()
+        }
+    }
+    
+    func configureView() {
+        // Update the user interface for the detail item.
+        let taskCell = tableView.dequeueReusableCell(withIdentifier: "task") as! TextFiledTableViewCell
+        if let detail = detailItem {
+            if let field = taskCell.taskDetailCell {
+                field.text = detail.taskName
+            }
         }
     }
     

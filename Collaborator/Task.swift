@@ -14,9 +14,9 @@ class Task {
     }
 }
     
-//extension Task: CustomStringConvertible {
-//        var description: String{
-//            return taskName
-//        }
-//}
+extension Task: CustomStringConvertible {
+        var description: String{
+            return taskName
+        }
+}
 
