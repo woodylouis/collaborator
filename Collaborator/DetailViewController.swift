@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol DetailViewControllerDelegate {
+protocol DetailViewControllerDelegate: class {
     func detailViewControllerDidUpdate(_ detailViewController: DetailViewController)
     //func detailViewControllerDidCancel(_ detailViewController: DetailViewController)
 }
@@ -41,11 +41,11 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         detailItem?.taskName = textField.text ?? ""
-        let theDate = Date()
+        let date = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .short
-        let currentDate = formatter.string(from: theDate)
+        let currentDate = formatter.string(from: date)
         let taskIndexPath = IndexPath(row: textFiledRowCell, section: textFiledSectionCell)
         
         
@@ -55,6 +55,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
             if textField == cell.taskDetailCell {
                 detailItem?.taskName = textField.text ?? ""
                 detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
+                //print(textField)
             }
         } else if textFiledSectionCell == 2{
             let cell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
@@ -110,8 +111,11 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return 1
-        return objects[section].count
+        if section == 2{
+            return (detailItem?.logDetail.count) ?? 1
+        } else {
+            return 1
+        }
     }
     
     // Switch section by identifier
@@ -135,7 +139,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
 //        guard let taggedView = cell.viewWithTag(1), let textField = taggedView as? UITextField else {
 //            return cell
 //        }
-        if identifier == "taskField" {
+        if identifier == "task" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TextFiledTableViewCell
             let textFiled: UITextField = cell.taskDetailCell
             textFiled.text = detailItem?.description
@@ -151,7 +155,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "log", for: indexPath) as! LogTableViewCell
             let logTextField: UITextField = cell.logDetailCell
             logTextField.text = detailItem?.logDetail[indexPath.row]
             cell.delegate = self
@@ -161,6 +165,9 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
         }
 //        textField.text = detailItem?.taskName
 //        textField.delegate = self
+//        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+//        let object = objects[indexPath.section][indexPath.row]
+//        cell.textLabel!.text = object.description
 //        return cell
         
     }

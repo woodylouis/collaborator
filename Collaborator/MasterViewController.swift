@@ -94,15 +94,20 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         //objects[0].insert("Hello", at: 0)
         //var indexPaths = [IndexPath]()
         //for section in 0..<sectionHeaders.count }
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        let nowDate = formatter.string(from: date)
         let indexPath = IndexPath(row: objects[0].count, section: 0)
-        objects[0].append(Task(taskName: "To do item \(objects[0].count + 1)"))  //default item
+        let defaultLog = "\(nowDate) Wenjin create 'Collaboration Point \(objects[0].count + 1)'"
+        //default value for To-Do section in Master view
+        objects[0].append(Task(taskName: "Collaboration Point \(objects[0].count + 1)", collaboratorDetail: "", logDetail: ["\(defaultLog)"])) //default item
         tableView.insertRows(at: [indexPath], with: .automatic)
         self.indexPath = indexPath
         tableView.reloadData()
         performSegue(withIdentifier: "showDetail", sender: indexPath)
         
-        //let indexPath1 = IndexPath(row: 0, section: 1)
-        //}        
     }
 
 //    @objc
