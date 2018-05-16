@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LogTextFiledTableViewCellDelegate: class {
-    func LocateLogField(_ textFiledTableViewCell: LogTableViewCell)
+    func LocateLogField(_ logTextFiledTableViewCell: LogTableViewCell)
 }
 
 class LogTableViewCell: UITableViewCell, UITextFieldDelegate {

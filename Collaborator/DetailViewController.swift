@@ -20,24 +20,53 @@ enum subSections: Int {
     case logSection = 2
 }
 
-class DetailViewController: UITableViewController, UITextFieldDelegate {
-
+class DetailViewController: UITableViewController, UITextFieldDelegate, TextFiledTableViewCellDelegate, LogTextFiledTableViewCellDelegate {
     var objects = subsectionHeaders.map { (_: String) -> [Task] in return [Task]() } //.map
     var delegate: DetailViewControllerDelegate?
     var indexPath: IndexPath?
     //@IBOutlet weak var detailDescriptionField: UITextField!
+    var textFiledRowCell = Int()
+    var textFiledSectionCell = Int()
+ 
+    func LocateTextFiled(_ textFiledTableViewCell: TextFiledTableViewCell) {
+        textFiledRowCell = textFiledTableViewCell.taskRow
+        textFiledSectionCell = textFiledTableViewCell.taskSection
+    }
     
-    
+    func LocateLogField(_ logTextFiledTableViewCell: LogTableViewCell) {
+        textFiledRowCell = logTextFiledTableViewCell.logRow
+        textFiledRowCell = logTextFiledTableViewCell.logSection
+    }
+
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         detailItem?.taskName = textField.text ?? ""
+        let theDate = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        let currentDate = formatter.string(from: theDate)
+        let taskIndexPath = IndexPath(row: textFiledRowCell, section: textFiledSectionCell)
+        
+        
+        // return detail for in log Section
+        if textFiledSectionCell == 0 {
+            let cell = tableView.cellForRow(at: taskIndexPath) as! TextFiledTableViewCell
+            if textField == cell.taskDetailCell {
+                detailItem?.taskName = textField.text ?? ""
+                detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
+            }
+        } else if textFiledSectionCell == 2{
+            let cell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
+            if textField == cell.logDetailCell {
+                detailItem?.logDetail[textFiledRowCell] = textField.text ?? ""
+            }
+        }
+        
         delegate?.detailViewControllerDidUpdate(self)
         return true
     }
     
-
-
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -110,8 +139,8 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TextFiledTableViewCell
             let textFiled: UITextField = cell.taskDetailCell
             textFiled.text = detailItem?.description
-            cell.row = indexPath.row
-            cell.section = indexPath.section
+            cell.taskRow = indexPath.row
+            cell.taskSection = indexPath.section
             cell.delegate = self
             return cell
         } else if identifier == "collaborator"{
@@ -126,8 +155,8 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
             let logTextField: UITextField = cell.logDetailCell
             logTextField.text = detailItem?.logDetail[indexPath.row]
             cell.delegate = self
-            cell.row = indexPath.row
-            cell.section = indexPath.section
+            cell.logRow = indexPath.row
+            cell.logSection = indexPath.section
             return cell
         }
 //        textField.text = detailItem?.taskName
