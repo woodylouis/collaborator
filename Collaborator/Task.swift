@@ -8,9 +8,13 @@
 
 class Task {
     var taskName: String = ""
+    var collaboratorDetail: String = ""
+    var logDetail: Array<String> = []
     
-    init(taskName: String) {
+    init(taskName: String, collaboratorDetail: String, logDetail: Array<String>) {
         self.taskName = taskName
+        self.collaboratorDetail = collaboratorDetail
+        self.logDetail = logDetail
     }
 }
     

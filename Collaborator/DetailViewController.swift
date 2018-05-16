@@ -37,11 +37,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
     
 
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        configureView()
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,6 +68,12 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        configureView()
+    }
+    
     // MARK: - table View
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,13 +102,38 @@ class DetailViewController: UITableViewController, UITextFieldDelegate {
             //            fatalError("Unexpectedly got \(indexPath.section)")
         }
         
-        //       let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TextFiledTableViewCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TextFiledTableViewCell
-        let textFiled: UITextField = cell.taskDetailCell
-        textFiled.text = detailItem?.taskName
-        textFiled.delegate = self
-        return cell
+//        guard let taggedView = cell.viewWithTag(1), let textField = taggedView as? UITextField else {
+//            return cell
+//        }
+        if identifier == "taskField" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TextFiledTableViewCell
+            let textFiled: UITextField = cell.taskDetailCell
+            textFiled.text = detailItem?.description
+            cell.row = indexPath.row
+            cell.section = indexPath.section
+            cell.delegate = self
+            return cell
+        } else if identifier == "collaborator"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "collaborator", for: indexPath) as! CollaboratorTableViewCell
+            let textFiled: UITextField = cell.collaboratorDetailCell
+            textFiled.text = detailItem?.taskName
+            textFiled.delegate = self
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogTableViewCell
+            let logTextField: UITextField = cell.logDetailCell
+            logTextField.text = detailItem?.logDetail[indexPath.row]
+            cell.delegate = self
+            cell.row = indexPath.row
+            cell.section = indexPath.section
+            return cell
+        }
+//        textField.text = detailItem?.taskName
+//        textField.delegate = self
+//        return cell
+        
     }
     
     // MARK: - to show sub header i.e. TASK, COLLABORATORS, LOG
