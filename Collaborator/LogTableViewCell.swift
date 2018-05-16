@@ -8,9 +8,18 @@
 
 import UIKit
 
-class LogTableViewCell: UITableViewCell {
+protocol LogTextFiledTableViewCellDelegate: class {
+    func LocateLogField(_ textFiledTableViewCell: LogTableViewCell)
+}
 
+class LogTableViewCell: UITableViewCell, UITextFieldDelegate {
+    var logRow = Int()
+    var logSection = Int()
     @IBOutlet weak var logDetailCell: UITextField!
+    weak var delegate: LogTextFiledTableViewCellDelegate?
+    @IBAction func selectLogField(_ sender: Any) {
+        delegate?.LocateLogField(self)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

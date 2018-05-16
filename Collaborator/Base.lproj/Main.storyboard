@@ -159,8 +159,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7NS-Jy-cH6" userLabel="Collaborator Text Field">
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7NS-Jy-cH6" userLabel="Collaborator Text Field">
                                             <rect key="frame" x="16" y="7" width="343" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -169,15 +170,7 @@
                                             </connections>
                                         </textField>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7NS-Jy-cH6" firstAttribute="trailing" secondItem="t4j-fc-fl9" secondAttribute="trailingMargin" id="J6A-FR-qiM"/>
-                                        <constraint firstItem="7NS-Jy-cH6" firstAttribute="centerY" secondItem="t4j-fc-fl9" secondAttribute="centerY" id="agc-Cr-D3R"/>
-                                        <constraint firstItem="7NS-Jy-cH6" firstAttribute="leading" secondItem="t4j-fc-fl9" secondAttribute="leadingMargin" id="bUx-sP-ZJA"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="collaboratorDetailCell" destination="7NS-Jy-cH6" id="ocr-Ba-ocQ"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="log" id="7aD-RN-2Z2" customClass="LogTableViewCell" customModule="Collaborator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
@@ -186,24 +179,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ggq-Ms-w1m" userLabel="Log Text Field">
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ggq-Ms-w1m" userLabel="Log Text Field">
                                             <rect key="frame" x="16" y="7" width="343" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
+                                                <action selector="selectLogField:" destination="7aD-RN-2Z2" eventType="editingDidEnd" id="DOf-IJ-s6A"/>
                                                 <outlet property="delegate" destination="iAx-gD-RcR" id="2UG-UY-vtA"/>
                                             </connections>
                                         </textField>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Ggq-Ms-w1m" firstAttribute="leading" secondItem="aLb-zP-HAt" secondAttribute="leadingMargin" id="O4g-Au-gu4"/>
-                                        <constraint firstItem="Ggq-Ms-w1m" firstAttribute="trailing" secondItem="aLb-zP-HAt" secondAttribute="trailingMargin" id="h53-BA-hHQ"/>
-                                        <constraint firstItem="Ggq-Ms-w1m" firstAttribute="centerY" secondItem="aLb-zP-HAt" secondAttribute="centerY" id="jt4-oD-3zk"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="logDetailCell" destination="Ggq-Ms-w1m" id="ysj-0R-2bs"/>
+                                    <outlet property="logDetailCell" destination="Ggq-Ms-w1m" id="NrM-LT-aMK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
