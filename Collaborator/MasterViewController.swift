@@ -107,7 +107,6 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         self.indexPath = indexPath
         tableView.reloadData()
         performSegue(withIdentifier: "showDetail", sender: indexPath)
-        
     }
 
 //    @objc

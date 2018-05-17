@@ -151,7 +151,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
         } else if identifier == "collaborator"{
             let cell = tableView.dequeueReusableCell(withIdentifier: "collaborator", for: indexPath) as! CollaboratorTableViewCell
             let textFiled: UITextField = cell.collaboratorDetailCell
-            textFiled.text = detailItem?.taskName
+            textFiled.text = detailItem?.collaboratorDetail
             textFiled.delegate = self
             return cell
             
