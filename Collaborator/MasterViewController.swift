@@ -170,6 +170,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         switch section {
         case .ongoingSection:
             identifier = "ongoing"
+            
         case .doneSection:
             identifier = "done"
 //        default:

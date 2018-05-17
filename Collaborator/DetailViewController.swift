@@ -111,7 +111,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2{
+        if section == 2 {
             return (detailItem?.logDetail.count) ?? 1
         } else {
             return 1
@@ -139,6 +139,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
 //        guard let taggedView = cell.viewWithTag(1), let textField = taggedView as? UITextField else {
 //            return cell
 //        }
+        // let the program identify the cell and edit its text cell
         if identifier == "task" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TextFiledTableViewCell
             let textFiled: UITextField = cell.taskDetailCell
@@ -169,7 +170,6 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
 //        let object = objects[indexPath.section][indexPath.row]
 //        cell.textLabel!.text = object.description
 //        return cell
-        
     }
     
     // MARK: - to show sub header i.e. TASK, COLLABORATORS, LOG
