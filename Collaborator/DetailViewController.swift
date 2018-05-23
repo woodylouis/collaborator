@@ -46,21 +46,21 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
         formatter.timeStyle = .short
         formatter.dateStyle = .short
         let currentDate = formatter.string(from: date)
-        let taskIndexPath = IndexPath(row: textFiledRowCell, section: textFiledSectionCell)
+        let taskIndexPath = IndexPath(row: textFiledSectionCell, section: textFiledRowCell)
         
         
         // return detail for in log Section
-        if textFiledSectionCell == 0 {
+        if textFiledRowCell == 0 {
             let cell = tableView.cellForRow(at: taskIndexPath) as! TextFiledTableViewCell
             if textField == cell.taskDetailCell {
                 detailItem?.taskName = textField.text ?? ""
                 detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
                 //print(textField)
             }
-        } else if textFiledSectionCell == 2{
+        } else if textFiledRowCell == 2{
             let cell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
             if textField == cell.logDetailCell {
-                detailItem?.logDetail[textFiledRowCell] = textField.text ?? ""
+                detailItem?.logDetail[textFiledSectionCell] = textField.text ?? ""
             }
         }
         

@@ -9,9 +9,13 @@
 import UIKit
 import MultipeerConnectivity
 
+protocol PeerToPeerManagerDelegate: AnyObject {
+    func manager(_ manager: PeerToPeerManager, didReceive data: Data)
+}
+
 class PeerToPeerManager: NSObject {
     static let serviceType = "Collaboration-chitchat"
-    
+    var delegate: PeerToPeerManagerDelegate?
     private let peerID = MCPeerID(displayName: "Wenjin Li")
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
@@ -55,6 +59,7 @@ extension PeerToPeerManager: MCNearbyServiceAdvertiserDelegate {
 extension PeerToPeerManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("did recieve \(data.count) bytes")
+        delegate?.manager(self, didReceive: data)
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -78,6 +83,14 @@ extension PeerToPeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         print("found \(peerID.displayName)")
         invite(peer: peerID)
+        
+        func send(data: Data) {
+            do {
+                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            } catch {
+                print("Error \(error) sending \(data.count) bytes of data")
+            }
+        }
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
