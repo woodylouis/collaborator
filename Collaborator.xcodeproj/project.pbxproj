@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E49007620B64B3D00945CE1 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E49007520B64B3D00945CE1 /* ChatMessage.swift */; };
 		3E605B9D20B39E390019B528 /* PeerToPeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E605B9C20B39E390019B528 /* PeerToPeerManager.swift */; };
 		3E9477B920A962B800658818 /* TextFiledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */; };
 		3EABB20920982A890064A750 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABB20820982A890064A750 /* Task.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E49007520B64B3D00945CE1 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		3E605B9C20B39E390019B528 /* PeerToPeerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerToPeerManager.swift; sourceTree = "<group>"; };
 		3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFiledTableViewCell.swift; sourceTree = "<group>"; };
 		3EABB20820982A890064A750 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				FB12F6A420914DD200226F9F /* MasterViewController.swift */,
 				FB12F6A620914DD200226F9F /* DetailViewController.swift */,
 				3EABB20820982A890064A750 /* Task.swift */,
+				3E49007520B64B3D00945CE1 /* ChatMessage.swift */,
 				FB12F6A820914DD200226F9F /* Main.storyboard */,
 				3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */,
 				3EE1AAE220AC4FC900C31D45 /* LogTableViewCell.swift */,
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E49007620B64B3D00945CE1 /* ChatMessage.swift in Sources */,
 				3E605B9D20B39E390019B528 /* PeerToPeerManager.swift in Sources */,
 				3EE1AAE320AC4FC900C31D45 /* LogTableViewCell.swift in Sources */,
 				3EABB20920982A890064A750 /* Task.swift in Sources */,

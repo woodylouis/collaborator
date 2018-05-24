@@ -176,8 +176,5 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return subsectionHeaders[section]
     }
-    
-    
-    
 }
 

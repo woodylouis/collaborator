@@ -28,6 +28,7 @@ class PeerToPeerManager: NSObject {
         serviceAdvertiser.delegate = self
         serviceAdvertiser.startAdvertisingPeer()
         serviceBrowser.delegate = self
+        serviceBrowser.startBrowsingForPeers()
     }
     
     deinit {
