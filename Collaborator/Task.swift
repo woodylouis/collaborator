@@ -19,8 +19,13 @@ class Task {
 }
     
 extension Task: CustomStringConvertible {
-        var description: String{
+    var description: String {
             return taskName
         }
+    var log: Array<String> {
+            return logDetail
+    }
 }
+
+
 

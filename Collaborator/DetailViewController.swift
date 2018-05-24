@@ -84,7 +84,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     var detailItem: Task? {
         didSet {
             // Update the view.
-            configureView()
+            //configureView()
         }
     }
     

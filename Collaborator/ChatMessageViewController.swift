@@ -16,11 +16,16 @@ enum chatSections: Int {
 }
 
 class ChatMessageViewController: UITableViewController {
+    // var objects = chatSectionHeader.map {(_: String) -> [Task] in return [Task]() }
+    var detailItem: Task? {
+        didSet {
+            
+        }
+    }
+    
+ 
     
     //tableView
-    
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier: String
         guard let chatSection = chatSections(rawValue: indexPath.section) else {
@@ -40,7 +45,7 @@ class ChatMessageViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chatHistory", for: indexPath)
-            cell.textLabel?.text = "world"
+            cell.textLabel?.text = detailItem?.logDetail[0]
             return cell
         }
         
