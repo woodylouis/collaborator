@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E49007620B64B3D00945CE1 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E49007520B64B3D00945CE1 /* ChatMessage.swift */; };
 		3E605B9D20B39E390019B528 /* PeerToPeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E605B9C20B39E390019B528 /* PeerToPeerManager.swift */; };
 		3E9477B920A962B800658818 /* TextFiledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */; };
 		3EABB20920982A890064A750 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABB20820982A890064A750 /* Task.swift */; };
+		3EB471C320B6619200140C5E /* ChatMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB471C220B6619200140C5E /* ChatMessageViewController.swift */; };
+		3EB471C920B67A3B00140C5E /* ChatTypingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB471C820B67A3B00140C5E /* ChatTypingTableViewCell.swift */; };
 		3EE1AAE120AC4F5300C31D45 /* CollaboratorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1AAE020AC4F5300C31D45 /* CollaboratorTableViewCell.swift */; };
 		3EE1AAE320AC4FC900C31D45 /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1AAE220AC4FC900C31D45 /* LogTableViewCell.swift */; };
 		FB12F6A320914DD200226F9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12F6A220914DD200226F9F /* AppDelegate.swift */; };
@@ -41,10 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3E49007520B64B3D00945CE1 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		3E605B9C20B39E390019B528 /* PeerToPeerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerToPeerManager.swift; sourceTree = "<group>"; };
 		3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFiledTableViewCell.swift; sourceTree = "<group>"; };
 		3EABB20820982A890064A750 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		3EB471C220B6619200140C5E /* ChatMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewController.swift; sourceTree = "<group>"; };
+		3EB471C820B67A3B00140C5E /* ChatTypingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypingTableViewCell.swift; sourceTree = "<group>"; };
 		3EE1AAE020AC4F5300C31D45 /* CollaboratorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaboratorTableViewCell.swift; sourceTree = "<group>"; };
 		3EE1AAE220AC4FC900C31D45 /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
 		FB12F69F20914DD200226F9F /* Collaborator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collaborator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 		FB12F69620914DD200226F9F = {
 			isa = PBXGroup;
 			children = (
+				3EB471C820B67A3B00140C5E /* ChatTypingTableViewCell.swift */,
 				FB12F6A120914DD200226F9F /* Collaborator */,
 				FB12F6B820914DD200226F9F /* CollaboratorTests */,
 				FB12F6C320914DD200226F9F /* CollaboratorUITests */,
@@ -116,7 +119,7 @@
 				FB12F6A420914DD200226F9F /* MasterViewController.swift */,
 				FB12F6A620914DD200226F9F /* DetailViewController.swift */,
 				3EABB20820982A890064A750 /* Task.swift */,
-				3E49007520B64B3D00945CE1 /* ChatMessage.swift */,
+				3EB471C220B6619200140C5E /* ChatMessageViewController.swift */,
 				FB12F6A820914DD200226F9F /* Main.storyboard */,
 				3E9477B820A962B800658818 /* TextFiledTableViewCell.swift */,
 				3EE1AAE220AC4FC900C31D45 /* LogTableViewCell.swift */,
@@ -280,14 +283,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E49007620B64B3D00945CE1 /* ChatMessage.swift in Sources */,
 				3E605B9D20B39E390019B528 /* PeerToPeerManager.swift in Sources */,
 				3EE1AAE320AC4FC900C31D45 /* LogTableViewCell.swift in Sources */,
 				3EABB20920982A890064A750 /* Task.swift in Sources */,
+				3EB471C320B6619200140C5E /* ChatMessageViewController.swift in Sources */,
 				3EE1AAE120AC4F5300C31D45 /* CollaboratorTableViewCell.swift in Sources */,
 				FB12F6A720914DD200226F9F /* DetailViewController.swift in Sources */,
 				FB12F6A520914DD200226F9F /* MasterViewController.swift in Sources */,
 				FB12F6A320914DD200226F9F /* AppDelegate.swift in Sources */,
+				3EB471C920B67A3B00140C5E /* ChatTypingTableViewCell.swift in Sources */,
 				3E9477B920A962B800658818 /* TextFiledTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
