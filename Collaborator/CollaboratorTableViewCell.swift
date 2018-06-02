@@ -14,7 +14,6 @@ protocol CollaCellTableViewCellDelegate: class {
 
 class CollaboratorTableViewCell: UITableViewCell {
 
-//    @IBOutlet weak var collaboratorDetailCell: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

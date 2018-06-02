@@ -10,7 +10,6 @@ import UIKit
 
 protocol DetailViewControllerDelegate: class {
     func detailViewControllerDidUpdate(_ detailViewController: DetailViewController)
-    //func detailViewControllerDidCancel(_ detailViewController: DetailViewController)
 }
 
 let subsectionHeaders = ["TASK", "COLLABORATORS", "LOG"]
@@ -48,21 +47,21 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
         let taskIndexPath = IndexPath(row: textRowCell, section: textSectionCell)
         // return detail for in log Section
         if textSectionCell == 0 {
-            taskStoreData(taskIndexPath: taskIndexPath)
+            StoreHistory(taskIndexPath: taskIndexPath)
         } else if textSectionCell == 2 {
-            logStoreData(taskIndexPath: taskIndexPath)
+            StoreAHistory(taskIndexPath: taskIndexPath)
         }
         delegate?.detailViewControllerDidUpdate(self)
         tableView.reloadData()
         return true
     }
     
-    // the function use for store task data
-    func taskStoreData(taskIndexPath: IndexPath){
+    // For store history's date
+    func StoreHistory(taskIndexPath: IndexPath){
         let theDate = Date()
         let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .short
+        formatter.dateFormat = "dd-MM-YYYY HH:mm:ss"  //Australian Date format
+        //formatter.dateStyle = .short
         let currentDate = formatter.string(from: theDate)
         let defaultChange = "\(currentDate) Wenjin Li changed topic to"
         
@@ -72,7 +71,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     }
     
     // the function use for store log data
-    func logStoreData(taskIndexPath: IndexPath){
+    func StoreAHistory(taskIndexPath: IndexPath){
         let logCell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
         detailItem?.logDetail[taskIndexPath.row] = logCell.logDetailCell.text ?? ""
     }

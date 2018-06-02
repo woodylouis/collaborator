@@ -24,20 +24,21 @@ class ChatMessageViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    func updateLogInChat (chatTaskFieldIndex: IndexPath){
+    // update the screen when go into detail
+    func updateScreen (index: IndexPath){
         let theData = Date()
         let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .short
+        formatter.dateFormat = "dd-MM-YYYY HH:mm:ss"  //Australian Date format
+        //formatter.dateStyle = .short
         let currentDate = formatter.string(from: theData)
-        let chitChatArea = tableView.cellForRow(at: chatTaskFieldIndex) as! ChatTypingTableViewCell
+        let chitChatArea = tableView.cellForRow(at: index) as! ChatTypingTableViewCell
         detailItem?.logDetail.append("\(currentDate) \(chitChatArea.typingField.text!)")
     }
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let i = IndexPath(row: 0, section: 0)
-        updateLogInChat(chatTaskFieldIndex: i)
+        updateScreen(index: i)
         tableView.reloadData()
         return true
     }
@@ -67,6 +68,7 @@ class ChatMessageViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    // Chat view section
     override func numberOfSections(in tableView: UITableView) -> Int {
         return chatSectionHeader.count
     }
