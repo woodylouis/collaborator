@@ -93,7 +93,6 @@
 		FB12F69620914DD200226F9F = {
 			isa = PBXGroup;
 			children = (
-				3EB471C820B67A3B00140C5E /* ChatTypingTableViewCell.swift */,
 				FB12F6A120914DD200226F9F /* Collaborator */,
 				FB12F6B820914DD200226F9F /* CollaboratorTests */,
 				FB12F6C320914DD200226F9F /* CollaboratorUITests */,
@@ -116,6 +115,7 @@
 			children = (
 				FB12F6A220914DD200226F9F /* AppDelegate.swift */,
 				FB12F6A420914DD200226F9F /* MasterViewController.swift */,
+				3EB471C820B67A3B00140C5E /* ChatTypingTableViewCell.swift */,
 				FB12F6A620914DD200226F9F /* DetailViewController.swift */,
 				3EB471C220B6619200140C5E /* ChatMessageViewController.swift */,
 				3EE1AAE020AC4F5300C31D45 /* CollaboratorTableViewCell.swift */,

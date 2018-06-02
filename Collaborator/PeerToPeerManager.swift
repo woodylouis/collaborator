@@ -11,14 +11,16 @@ import MultipeerConnectivity
 
 protocol PeerToPeerManagerDelegate: AnyObject {
     func manager(_ manager: PeerToPeerManager, didReceive data: Data)
+    func foundPeer()
 }
 
 class PeerToPeerManager: NSObject {
     static let serviceType = "Collaboration-chitchat"
     var delegate: PeerToPeerManagerDelegate?
-    private let peerID = MCPeerID(displayName: "Wenjin Li")
+    private let peerID = MCPeerID(displayName: "Wenjin Li\( Int(arc4random_uniform(50)) ) on simulator")
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
+    var foundPeers = [MCPeerID]()
     
     override init() {
         let service = PeerToPeerManager.serviceType
@@ -46,6 +48,15 @@ class PeerToPeerManager: NSObject {
         print("inviting \(peer.displayName)")
         serviceBrowser.invitePeer(peer, to: session, withContext: nil, timeout: t)
     }
+    
+    func send(data: Data) {
+        guard !session.connectedPeers.isEmpty else { return }
+        do {
+            try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            print("Error sending \(data.count) bytes: \(error)")
+        }
+    }
 }
 
 extension PeerToPeerManager: MCNearbyServiceAdvertiserDelegate {
@@ -54,7 +65,26 @@ extension PeerToPeerManager: MCNearbyServiceAdvertiserDelegate {
         invitationHandler(true, session)
     }
     
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        print("did Not Start Advertising Peer: \(error)")
+    }
+}
+
+extension PeerToPeerManager: MCNearbyServiceBrowserDelegate {
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
+        print("didNotStartBrowsingForPeers: \(error)")
+    }
     
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        print("foundPeer: \(peerID) - \(info?.description ?? "<no info>")")
+        foundPeers.append(peerID)
+        invite(peer: peerID)
+        delegate?.foundPeer()
+    }
+    
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        print("lostPeer: \(peerID)")
+    }
 }
 
 extension PeerToPeerManager: MCSessionDelegate {
@@ -80,25 +110,5 @@ extension PeerToPeerManager: MCSessionDelegate {
     }
 }
 
-extension PeerToPeerManager: MCNearbyServiceBrowserDelegate {
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("found \(peerID.displayName)")
-        invite(peer: peerID)
-        
-        func send(data: Data) {
-            do {
-                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
-            } catch {
-                print("Error \(error) sending \(data.count) bytes of data")
-            }
-        }
-    }
-    
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("lost \(peerID.displayName)")
-    }
-    
-    
-    
-}
+
 

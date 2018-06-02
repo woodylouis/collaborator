@@ -9,14 +9,14 @@
 
 import UIKit
 
-
+// Two sections on the chat view
 let chatSectionHeader = ["Chat", "History"]
 enum chatSections: Int {
     case chatSection = 0
     case historySection = 1
 }
 
-class ChatMessageViewController: UITableViewController {
+class ChatMessageViewController: UITableViewController, UITextFieldDelegate {
     // var objects = chatSectionHeader.map {(_: String) -> [Task] in return [Task]() }
     var detailItem: Task? {
         didSet {
@@ -24,7 +24,25 @@ class ChatMessageViewController: UITableViewController {
         }
     }
     
- 
+    func updateLogInChat (chatTaskFieldIndex: IndexPath){
+        let theData = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        let currentDate = formatter.string(from: theData)
+        let chitChatArea = tableView.cellForRow(at: chatTaskFieldIndex) as! ChatTypingTableViewCell
+        detailItem?.logDetail.append("\(currentDate) \(chitChatArea.typingField.text!)")
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let i = IndexPath(row: 0, section: 0)
+        updateLogInChat(chatTaskFieldIndex: i)
+        tableView.reloadData()
+        return true
+    }
+    
+    
     
     //tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,15 +59,14 @@ class ChatMessageViewController: UITableViewController {
         
         if identifier == "chat" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chat", for: indexPath) as! ChatTypingTableViewCell
-            let textFiled: UITextField = cell.typingField
-            textFiled.text = "hey"
+            // let textFiled: UITextField = cell.typingField
+            // textFiled.text = "hey"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chatHistory", for: indexPath)
             cell.textLabel?.text = detailItem?.logDetail[0]
             return cell
         }
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +74,13 @@ class ChatMessageViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 1 {
+            return detailItem?.logDetail.count ?? 1
+        }else{
+            return 1
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

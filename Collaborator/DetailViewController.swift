@@ -23,44 +23,41 @@ enum subSections: Int {
 class DetailViewController: UITableViewController, UITextFieldDelegate, TextFiledTableViewCellDelegate, LogTextFiledTableViewCellDelegate {
     var objects = subsectionHeaders.map { (_: String) -> [Task] in return [Task]() } //.map
     var delegate: DetailViewControllerDelegate?
+    var testFiledTableViewCell: TextFiledTableViewCell? = nil
+    var logTableViewCell: LogTableViewCell? = nil
     var indexPath: IndexPath?
-    //@IBOutlet weak var detailDescriptionField: UITextField!
-    var textFiledRowCell = Int()
-    var textFiledSectionCell = Int()
+    var textRowCell = Int()
+    var textSectionCell = Int()
+    var peerName = [AnyObject]()
+    var theHostOwner = ""
  
+    // to get row and section for the text filed
     func LocateTextFiled(_ textFiledTableViewCell: TextFiledTableViewCell) {
-        textFiledRowCell = textFiledTableViewCell.taskRow
-        textFiledSectionCell = textFiledTableViewCell.taskSection
+        textRowCell = textFiledTableViewCell.taskRow
+        textSectionCell = textFiledTableViewCell.taskSection
     }
     
+    // to get row and section for the log's
     func LocateLogField(_ logTextFiledTableViewCell: LogTableViewCell) {
-        textFiledRowCell = logTextFiledTableViewCell.logRow
-        textFiledRowCell = logTextFiledTableViewCell.logSection
+        textRowCell = logTextFiledTableViewCell.logRow
+        textRowCell = logTextFiledTableViewCell.logSection
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
-        detailItem?.taskName = textField.text ?? ""
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .short
-        let currentDate = formatter.string(from: date)
-        let taskIndexPath = IndexPath(row: textFiledSectionCell, section: textFiledRowCell)
-        
-        
+        let taskIndexPath = IndexPath(row: textSectionCell, section: textRowCell)
         // return detail for in log Section
-        if textFiledRowCell == 0 {
+        if textRowCell == 0 {
             let cell = tableView.cellForRow(at: taskIndexPath) as! TextFiledTableViewCell
             if textField == cell.taskDetailCell {
                 detailItem?.taskName = textField.text ?? ""
-                detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
+//                detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
                 //print(textField)
             }
-        } else if textFiledRowCell == 2{
+        } else if textRowCell == 2{
             let cell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
             if textField == cell.logDetailCell {
-                detailItem?.logDetail[textFiledSectionCell] = textField.text ?? ""
+                detailItem?.logDetail[textSectionCell] = textField.text ?? ""
             }
         }
         
