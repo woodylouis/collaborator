@@ -40,31 +40,42 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     // to get row and section for the log's
     func LocateLogField(_ logTextFiledTableViewCell: LogTableViewCell) {
         textRowCell = logTextFiledTableViewCell.logRow
-        textRowCell = logTextFiledTableViewCell.logSection
+        textSectionCell = logTextFiledTableViewCell.logSection
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
-        let taskIndexPath = IndexPath(row: textSectionCell, section: textRowCell)
+        let taskIndexPath = IndexPath(row: textRowCell, section: textSectionCell)
         // return detail for in log Section
-        if textRowCell == 0 {
-            let cell = tableView.cellForRow(at: taskIndexPath) as! TextFiledTableViewCell
-            if textField == cell.taskDetailCell {
-                detailItem?.taskName = textField.text ?? ""
-//                detailItem?.logDetail.append("\(currentDate) \"\(textField.text!)\"")
-                //print(textField)
-            }
-        } else if textRowCell == 2{
-            let cell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
-            if textField == cell.logDetailCell {
-                detailItem?.logDetail[textSectionCell] = textField.text ?? ""
-            }
+        if textSectionCell == 0 {
+            taskStoreData(taskIndexPath: taskIndexPath)
+        } else if textSectionCell == 2 {
+            logStoreData(taskIndexPath: taskIndexPath)
         }
-        
         delegate?.detailViewControllerDidUpdate(self)
+        tableView.reloadData()
         return true
     }
     
+    // the function use for store task data
+    func taskStoreData(taskIndexPath: IndexPath){
+        let theDate = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        let currentDate = formatter.string(from: theDate)
+        let defaultChange = "\(currentDate) Wenjin Li changed topic to"
+        
+        let taskCell = tableView.cellForRow(at: taskIndexPath) as! TextFiledTableViewCell
+        detailItem?.taskName = taskCell.taskDetailCell.text ?? ""
+        detailItem?.logDetail.append("\(defaultChange) \"\(taskCell.taskDetailCell.text!)\"")
+    }
+    
+    // the function use for store log data
+    func logStoreData(taskIndexPath: IndexPath){
+        let logCell = tableView.cellForRow(at: taskIndexPath) as! LogTableViewCell
+        detailItem?.logDetail[taskIndexPath.row] = logCell.logDetailCell.text ?? ""
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,8 +83,6 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        //detailItem?.taskName = detailDescriptionField.text ?? ""
-        configureView()
         delegate?.detailViewControllerDidUpdate(self)
         
     }
@@ -98,7 +107,17 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("get name in detail \(peerName)")
+        print("count peers \(peerName.count)")
         configureView()
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ChatMessageViewController{
+            let controller = segue.destination as? ChatMessageViewController
+            controller?.detailItem = detailItem
+        }
     }
     
     // MARK: - table View
@@ -108,8 +127,11 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return (detailItem?.logDetail.count) ?? 1
+        
+        if section == 1{
+            return peerName.count
+        } else if section == 2 {
+            return detailItem?.logDetail.count ?? 1
         } else {
             return 1
         }
@@ -145,13 +167,11 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
             cell.taskSection = indexPath.section
             cell.delegate = self
             return cell
-        } else if identifier == "collaborator"{
+        } else if identifier == "collaborator" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "collaborator", for: indexPath) as! CollaboratorTableViewCell
-            //let textFiled: UITextField = cell.collaboratorDetailCell
-//            textFiled.text = detailItem?.collaboratorDetail
-//            textFiled.delegate = self
+            cell.textLabel?.text = String(describing: peerName[indexPath.row].displayName ?? "")
+            cell.detailTextLabel?.text = theHostOwner
             return cell
-            
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "log", for: indexPath) as! LogTableViewCell
             let logTextField: UITextField = cell.logDetailCell
@@ -161,12 +181,6 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
             cell.logSection = indexPath.section
             return cell
         }
-//        textField.text = detailItem?.taskName
-//        textField.delegate = self
-//        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-//        let object = objects[indexPath.section][indexPath.row]
-//        cell.textLabel!.text = object.description
-//        return cell
     }
     
     // MARK: - to show sub header i.e. TASK, COLLABORATORS, LOG

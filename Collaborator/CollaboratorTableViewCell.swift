@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol CollaCellTableViewCellDelegate: class {
+    func collaCellPosition(_ collaCellTableViewCell: CollaboratorTableViewCell)
+}
+
 class CollaboratorTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var collaboratorDetailCell: UITextField!
+//    @IBOutlet weak var collaboratorDetailCell: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

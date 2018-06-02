@@ -48,25 +48,34 @@ enum Sections: Int {
 //}
 
 
-class MasterViewController: UITableViewController, DetailViewControllerDelegate {
+class MasterViewController: UITableViewController, DetailViewControllerDelegate, PeerToPeerManagerDelegate {
+    func manager(_ manager: PeerToPeerManager, didReceive data: Data) {
+        print(data)
+        view.setNeedsDisplay()
+    }
     
-    //var toDoList:[Task] = []
+    func foundPeer() {
+        if (peeroTopeer.foundPeers.count > 0){
+            aPeerList = peeroTopeer.foundPeers
+            aHost = String(describing: peeroTopeer.peerID.displayName)
+            tableView.reloadData()
+        }
+    }
+    
+    var aPeerList = [AnyObject]()
+    var aHost = ""
+    var peeroTopeer = PeerToPeerManager()
     var indexPath: IndexPath?
     var detailViewController: DetailViewController? = nil
-//    var objects = [[Any](), [Any]()]
-//    var objects = initialiseObjects(n: sectionHeaders.count)
     var objects = sectionHeaders.map { (_: String) -> [Task] in return [Task]() } //.map
 
     func detailViewControllerDidUpdate(_ detailViewController: DetailViewController) {
-//        let indexPath = objects[0].count - 1
-//        if objects[0][indexPath].taskName == "" {
-//            objects[0].remove(at: (indexPath))//        }
-        
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        peeroTopeer.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -130,6 +139,8 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
             let object = objects[indexPath.section][indexPath.row]
             let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
             controller.detailItem = object
+            controller.peerName = aPeerList
+            controller.theHostOwner = aHost
             controller.delegate = self
             controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
@@ -151,7 +162,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
         return sectionHeaders[section]
     }
 
-    // Switch section by identifier
+    // Switch sections by identifier
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier: String
         guard let section = Sections(rawValue: indexPath.section) else {
@@ -163,15 +174,10 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
             
         case .doneSection:
             identifier = "done"
-//        default:
-//            fatalError("Unexpectedly got \(indexPath.section)")
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-
-        //let object = objects[indexPath.section][indexPath.row] as! NSDate //two dimensions
         let object = objects[indexPath.section][indexPath.row] //two dimensions
-        //cell.textLabel!.text = object.description
         cell.textLabel!.text = object.taskName
         return cell
     }
