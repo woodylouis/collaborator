@@ -52,19 +52,17 @@ class ChatMessageViewController: UITableViewController, UITextFieldDelegate {
         }
         switch chatSection {
         case .chatSection:
-            identifier = "chat"
+            identifier = "typingField"
         case .historySection:
             identifier = "chatHistory"
         }
         
-        if identifier == "chat" {
+        if identifier == "typingField" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chat", for: indexPath) as! ChatTypingTableViewCell
-            // let textFiled: UITextField = cell.typingField
-            // textFiled.text = "hey"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chatHistory", for: indexPath)
-            cell.textLabel?.text = detailItem?.logDetail[0]
+            cell.textLabel?.text = detailItem?.logDetail[indexPath.row]
             return cell
         }
     }
