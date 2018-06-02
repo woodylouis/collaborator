@@ -15,7 +15,7 @@ protocol PeerToPeerManagerDelegate: AnyObject {
 }
 
 class PeerToPeerManager: NSObject {
-    static let serviceType = "commu-exchange"
+    static let serviceType = "communication"
     var delegate: PeerToPeerManagerDelegate?
     var peerID = MCPeerID(displayName: "Wenjin Li\( Int(arc4random_uniform(50)) ) on simulator")
     private let serviceAdvertiser: MCNearbyServiceAdvertiser

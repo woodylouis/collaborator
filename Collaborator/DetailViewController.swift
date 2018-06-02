@@ -106,8 +106,6 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("get name in detail \(peerName)")
-        print("count peers \(peerName.count)")
         configureView()
     }
     
@@ -127,7 +125,7 @@ class DetailViewController: UITableViewController, UITextFieldDelegate, TextFile
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 1{
+        if section == 1 {
             return peerName.count
         } else if section == 2 {
             return detailItem?.logDetail.count ?? 1

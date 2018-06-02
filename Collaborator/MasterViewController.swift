@@ -50,7 +50,6 @@ enum Sections: Int {
 
 class MasterViewController: UITableViewController, DetailViewControllerDelegate, PeerToPeerManagerDelegate {
     func manager(_ manager: PeerToPeerManager, didReceive data: Data) {
-        print(data)
         view.setNeedsDisplay()
     }
     
@@ -105,8 +104,7 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate,
         //for section in 0..<sectionHeaders.count }
         let date = Date()
         let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .short
+        formatter.dateFormat = "dd-MM-YYYY HH:mm:ss"  //Australian Date format
         let nowDate = formatter.string(from: date)
         let indexPath = IndexPath(row: objects[0].count, section: 0)
         let defaultLog = "\(nowDate) Wenjin create 'Collaboration Point \(objects[0].count + 1)'"
