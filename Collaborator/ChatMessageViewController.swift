@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 let chatSectionHeader = ["Chat", "History"]
 enum chatSections: Int {
     case chatSection = 0
@@ -41,7 +42,7 @@ class ChatMessageViewController: UITableViewController {
         if identifier == "chat" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chat", for: indexPath) as! ChatTypingTableViewCell
             let textFiled: UITextField = cell.typingField
-                textFiled.text = "hey"
+            textFiled.text = "hey"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chatHistory", for: indexPath)

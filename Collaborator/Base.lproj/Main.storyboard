@@ -159,6 +159,34 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3aS-8O-RAY" id="t4j-fc-fl9">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoO-I3-Cgs">
+                                            <rect key="frame" x="16" y="0.0" width="50" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Ybg-kQ-FlJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-gA-ogm">
+                                            <rect key="frame" x="16" y="25" width="42" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="42" id="HH6-2A-d5m"/>
+                                                <constraint firstAttribute="height" constant="18" id="o69-n7-7Pj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SoO-I3-Cgs" firstAttribute="leading" secondItem="t4j-fc-fl9" secondAttribute="leadingMargin" id="E5N-1P-JxZ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="SoO-I3-Cgs" secondAttribute="bottom" constant="7" id="chM-s0-Lfa"/>
+                                        <constraint firstItem="SoO-I3-Cgs" firstAttribute="leading" secondItem="MSP-gA-ogm" secondAttribute="leading" id="hjH-cL-ZPa"/>
+                                        <constraint firstItem="SoO-I3-Cgs" firstAttribute="top" secondItem="t4j-fc-fl9" secondAttribute="top" id="pFm-qo-qi1"/>
+                                        <constraint firstItem="MSP-gA-ogm" firstAttribute="top" secondItem="t4j-fc-fl9" secondAttribute="topMargin" constant="14" id="psf-op-If5"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="ewH-6O-Qa8" kind="show" id="n9w-ca-dgZ"/>

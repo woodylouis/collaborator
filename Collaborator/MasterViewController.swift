@@ -116,15 +116,6 @@ class MasterViewController: UITableViewController, DetailViewControllerDelegate 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.section][indexPath.row] as! Task  //two dimensions
-//                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
-//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//                controller.navigationItem.leftItemsSupplementBackButton = true
-//            }
-//        }
         if segue.identifier == "showDetail" {
             let indexPath : IndexPath
             if let indexPaths = tableView.indexPathForSelectedRow {
